@@ -1,0 +1,8 @@
+{
+  "entryPoint": "./src/index.lua",
+  "output": "./dist/Patcher.lua",
+  "bundleOptions": {
+    "paths": ["src/?.lua"]
+  },
+  "isDev": false
+}
