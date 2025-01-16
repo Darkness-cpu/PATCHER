@@ -1,0 +1,15 @@
+{
+  "name": "PATCHER",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "./build.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chokidar": "latest",
+    "luabundle": "latest",
+    "luamin": "latest"
+  }
+}
