@@ -18,11 +18,10 @@ jobs:
           bun-version: latest
       - name: compiler 
         run: |
-          npm i
-          bunx tsc
-          bun --env-file=.env run .
+          bun i
+          bun run build.js
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: src
-          path: ./dist/*
+          name: compiler
+          path: ./dist/*.lua
