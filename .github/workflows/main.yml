@@ -1,0 +1,28 @@
+name: Compiler
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Corrected indentation and added quotes around the node version
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: compiler 
+        run: |
+          npm i
+          bunx tsc
+          bun --env-file=.env run .
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: src
+          path: ./dist/*
