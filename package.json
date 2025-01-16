@@ -1,30 +1,22 @@
 {
-  "name": "lua-builder",
+  "name": "lua-build-watch",
   "version": "1.0.0",
-  "description": "A Lua file bundler and minifier with watch mode and notifications.",
+  "description": "A build and watch script for Lua files with bundling and minification.",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js",
-    "build:clean": "node build.js --clean",
-    "build:watch": "node build.js --watch",
-    "build:clean-watch": "node build.js --clean --watch"
+    "test": "node build.js"
   },
+  "keywords": ["lua", "build", "watch", "bundle", "minify"],
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
     "chalk": "latest",
-    "chokidar": "^latest",
-    "luabundle": "latest",
-    "luamin": "latest",
-    "node-notifier": "latest"
+    "chokidar": "latest",
+    "luabundle": "latest", 
+    "luamin": "latest"
   },
   "devDependencies": {},
-  "keywords": [
-    "lua",
-    "bundler",
-    "minifier",
-    "watch",
-    "build",
-    "automation"
-  ]
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }
