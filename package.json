@@ -1,17 +1,30 @@
 {
-  "name": "PATCHER",
+  "name": "lua-builder",
   "version": "1.0.0",
-  "type": "commonjs",
-  "main": "./build.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "description": "A Lua file bundler and minifier with watch mode and notifications.",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "build:clean": "node build.js --clean",
+    "build:watch": "node build.js --watch",
+    "build:clean-watch": "node build.js --clean --watch"
+  },
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
-    "chokidar": "latest",
     "chalk": "latest",
-    "node-notifier": "latest"
+    "chokidar": "^latest",
     "luabundle": "latest",
-    "luamin": "latest"
-  }
+    "luamin": "latest",
+    "node-notifier": "latest"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "lua",
+    "bundler",
+    "minifier",
+    "watch",
+    "build",
+    "automation"
+  ]
 }
