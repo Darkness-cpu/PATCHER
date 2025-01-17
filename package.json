@@ -14,7 +14,8 @@
     "chokidar": "latest",
     "luabundle": "latest", 
     "luamin": "latest",
-    "rimraf": "latest"
+    "rimraf": "latest",
+    "readline": "latest"
   },
   "engines": {
     "node": ">=18.0.0"
