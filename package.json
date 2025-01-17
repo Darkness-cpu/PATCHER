@@ -4,13 +4,12 @@
   "description": "A build and watch script for Lua files with bundling and minification.",
   "main": "build.js",
   "scripts": {
-    "test": "node build.js"
+    "test": "node ."
   },
   "keywords": ["lua", "build", "watch", "bundle", "minify"],
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "chalk": "latest",
     "chokidar": "latest",
     "luabundle": "latest", 
     "luamin": "latest"
