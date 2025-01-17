@@ -7,8 +7,8 @@ local Patcher   = {}
 Patcher.__index = Patcher
 
 
-local VERSION_CODE = 100
-local VERSION_NAME = "1.0.0"
+local VERSION_CODE = 1011
+local VERSION_NAME = "101.1"
 
 
 --- Create a new Patcher instance.
