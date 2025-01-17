@@ -8,20 +8,24 @@ const { bundle } = require("luabundle");
 const entryPoint = path.join(__dirname, "src", "index.lua");
 const distDir = path.join(__dirname, "dist");
 const output = path.join(distDir, "Patcher.lua");
+
 const bundleOptions = {
   paths: [`src${path.sep}?.lua`],
 };
+
 // Function to get a formatted timestamp
 const getTimestamp = () => {
   const now = new Date();
   return now.toLocaleString(); // Example: "1/17/2025, 10:00:00 AM"
 };
+
 // Function to clean the dist directory
 const cleanDist = () => {
   console.log(`[${getTimestamp()}] Cleaning dist directory...`);
   rimraf.sync(distDir);
   console.log(`[${getTimestamp()}] Dist directory cleaned.`);
 };
+
 // Function to build the Lua file
 const build = () => {
   console.log(`[${getTimestamp()}] Starting build...`);
@@ -39,13 +43,17 @@ const build = () => {
     console.error(`[${getTimestamp()}] Build failed:`, error.message);
   }
 };
-// Check for the -2 flag
-const isWatchMode = process.argv.includes("-w");
+
+// Check for the --watch flag
+const isWatchMode = process.argv.includes("--watch");
+
 // Clean and rebuild once
 cleanDist();
 build();
+
 if (isWatchMode) {
   console.log(`[${getTimestamp()}] Watching for changes...`);
+
   // Watch for changes in the src directory
   chokidar
     .watch(path.join(__dirname, "src"), { persistent: true })
