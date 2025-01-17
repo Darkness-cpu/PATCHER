@@ -2,9 +2,10 @@
   "name": "lua-build-watch",
   "version": "1.0.0",
   "description": "A build and watch script for Lua files with bundling and minification.",
-  "main": "build.js",
+  "main": "build.ts",
   "scripts": {
-    "test": "node ."
+    "build": "tsx build.ts",
+    "watch": "tsx build.ts --watch"
   },
   "keywords": ["lua", "build", "watch", "bundle", "minify"],
   "author": "Your Name",
@@ -14,8 +15,11 @@
     "luabundle": "latest", 
     "luamin": "latest"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/chokidar": "latest",
+    "@types/node": "^22"
+  },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   }
 }
