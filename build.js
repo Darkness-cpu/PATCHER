@@ -14,32 +14,46 @@ const bundleOptions = {
 // Ensure the output directory exists
 if (!fs.existsSync(path.dirname(output))) fs.mkdirSync(path.dirname(output));
 
+// Function to get a formatted timestamp
+const getTimestamp = () => {
+  const now = new Date();
+  return now.toLocaleString(); // Example: "1/17/2025, 10:00:00 AM"
+};
+
 // Function to build the Lua file
 const build = () => {
+  console.log(`[${getTimestamp()}] Starting build...`);
   try {
     const bundledCode = bundle(entryPoint, bundleOptions);
     const minifiedCode = minify(bundledCode);
 
     fs.writeFileSync(output, minifiedCode);
-    console.log("Build complete!");
+    console.log(`[${getTimestamp()}] Build complete!`);
     console.log(`Output: ${output}`);
   } catch (error) {
-    console.error("Build failed:", error.message);
+    console.error(`[${getTimestamp()}] Build failed:`, error.message);
   }
 };
 
-// Initial build
-build();
+// Check for the --watch flag
+const isWatchMode = process.argv.includes("--watch");
 
-// Watch for changes in the src directory
-chokidar
-  .watch(path.join(__dirname, "src"), { persistent: true })
-  .on("change", (filePath) => {
-    console.log(`File changed: ${filePath}`);
-    build();
-  })
-  .on("error", (error) => {
-    console.error("Watcher error:", error);
-  });
+if (isWatchMode) {
+  console.log(`[${getTimestamp()}] Watching for changes...`);
+  // Initial build
+  build();
 
-console.log("Watching for changes...");
+  // Watch for changes in the src directory
+  chokidar
+    .watch(path.join(__dirname, "src"), { persistent: true })
+    .on("change", (filePath) => {
+      console.log(`[${getTimestamp()}] File changed: ${filePath}`);
+      build();
+    })
+    .on("error", (error) => {
+      console.error(`[${getTimestamp()}] Watcher error:`, error);
+    });
+} else {
+  // Run a single build
+  build();
+}
