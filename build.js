@@ -11,29 +11,35 @@ const bundleOptions = {
   paths: [`src${path.sep}?.lua`],
 };
 
-if (!fs.existsSync(path.dirname(output))) {
-  fs.mkdirSync(path.dirname(output), { recursive: true });
-}
+// Ensure the output directory exists
+if (!fs.existsSync(path.dirname(output))) fs.mkdirSync(path.dirname(output));
 
-function build() {
+// Function to build the Lua file
+const build = () => {
   try {
     const bundledCode = bundle(entryPoint, bundleOptions);
     const minifiedCode = minify(bundledCode);
+
     fs.writeFileSync(output, minifiedCode);
-    console.log(`[${new Date().toLocaleTimeString()}] Build complete!`);
+    console.log("Build complete!");
     console.log(`Output: ${output}`);
   } catch (error) {
-    console.error(`[${new Date().toLocaleTimeString()}] Build failed:`, error.message);
+    console.error("Build failed:", error.message);
   }
-}
+};
 
 // Initial build
 build();
 
-// Watch for changes in the "src" directory
-chokidar.watch(path.join(__dirname, "src"), { persistent: true }).on("all", (event, filePath) => {
-  if (["add", "change", "unlink"].includes(event)) {
-    console.log(`[${new Date().toLocaleTimeString()}] Detected ${event} in ${filePath}. Rebuilding...`);
+// Watch for changes in the src directory
+chokidar
+  .watch(path.join(__dirname, "src"), { persistent: true })
+  .on("change", (filePath) => {
+    console.log(`File changed: ${filePath}`);
     build();
-  }
-});
+  })
+  .on("error", (error) => {
+    console.error("Watcher error:", error);
+  });
+
+console.log("Watching for changes...");
